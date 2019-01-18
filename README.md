@@ -6,6 +6,10 @@ Scaling Collaborative Filtering with PySpark
 ## Tech Stack
 S3 -> Spark -> HBase -> Phoenix -> frontend
 
+If time allows:
+
+Kafka -> Spark Streaming -> HBase -> Phoenix -> frontend
+
 ## Data Source
 [Movie data](https://grouplens.org/datasets/movielens/)
 

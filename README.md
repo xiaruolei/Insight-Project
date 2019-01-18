@@ -30,3 +30,6 @@ Data stored in S3 and use Spark to make computation to get rating matrix. Then s
 
 ## Stretch Goals
 Use a scheduler to automatically run the system periodically and make frontend to visualize it.
+
+## reference
+https://engineeringblog.yelp.com/2018/05/scaling-collaborative-filtering-with-pyspark.html

@@ -51,10 +51,10 @@ if __name__ == '__main__':
 
 
 
-    # userFeature = ALS_model.userFeatures()
-    # movieFeature = ALS_model.productFeatures()
-    # # with open('userFeature1.txt', 'w') as output:
-    # #     output.write('\n'.join('%s %s' % x for x in userFeature))
+    userFeature = ALS_model.userFeatures()
+    movieFeature = ALS_model.productFeatures()
+    # with open('userFeature1.txt', 'w') as output:
+    #     output.write('\n'.join('%s %s' % x for x in userFeature))
     
     # userFeatureVector = userFeature.map(lambda line: line[1])
     # print("############################################################")
@@ -62,55 +62,55 @@ if __name__ == '__main__':
     # print(movieFeature.take(1))
     # print("############################################################")
 
-    # # Build the model (cluster the data)
-    # clusters_model = KMeans.train(userFeatureVector, 10, maxIterations=10, initializationMode="random")
+    # Build the model (cluster the data)
+    clusters_model = KMeans.train(userFeatureVector, 10, maxIterations=10, initializationMode="random")
 
-    # # # # Evaluate clustering by computing Within Set Sum of Squared Errors
-    # # # def error(featureVector):
-    # # #     center = clusters_model.centers[clusters_model.predict(featureVector)]
-    # # #     return sqrt(sum([x**2 for x in (featureVector - center)]))
+    # # # Evaluate clustering by computing Within Set Sum of Squared Errors
+    # # def error(featureVector):
+    # #     center = clusters_model.centers[clusters_model.predict(featureVector)]
+    # #     return sqrt(sum([x**2 for x in (featureVector - center)]))
 
-    # # # print("*****************")
-    # # # WSSSE = userFeatureVector.map(lambda featureVector: error(featureVector)).reduce(lambda x, y: x + y)
-    # # # print("Within Set Sum of Squared Error = " + str(WSSSE))
+    # # print("*****************")
+    # # WSSSE = userFeatureVector.map(lambda featureVector: error(featureVector)).reduce(lambda x, y: x + y)
+    # # print("Within Set Sum of Squared Error = " + str(WSSSE))
 
-    # userCluster = userFeature.map(lambda x: (clusters_model.predict(x[1]), x[1]))
-    # # userInfo = ratings.map(lambda r: (r[0], (r[1], r[2]))).join(userCluster)
+    userCluster = userFeature.map(lambda x: (clusters_model.predict(x[1]), x[1]))
+    # userInfo = ratings.map(lambda r: (r[0], (r[1], r[2]))).join(userCluster)
 
-    # def list_add(a,b):
-    #     c = []
-    #     for i in range(len(a)):
-    #         c.append(a[i]+b[i])
-    #     return c
+    def list_add(a,b):
+        c = []
+        for i in range(len(a)):
+            c.append(a[i]+b[i])
+        return c
 
-    # def list_divide(a,b):
-    #     c = []
-    #     for i in range(len(a)):
-    #         c.append(a[i]/b)
-    #     return c
+    def list_divide(a,b):
+        c = []
+        for i in range(len(a)):
+            c.append(a[i]/b)
+        return c
 
-    # def cos_sim(a,b):
-    #     return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))  
+    def cos_sim(a,b):
+        return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))  
 
-    # centerVector = userCluster.reduceByKey(list_add)
+    centerVector = userCluster.reduceByKey(list_add)
 
-    # centerCount = userCluster.countByKey()
+    centerCount = userCluster.countByKey()
 
-    # ClusterUserAvgVector = centerVector.map(lambda (k, v): (k, (v, centerCount[k]))) \
-    #     .mapValues(lambda (x, y): list_divide(x, y))
+    ClusterUserAvgVector = centerVector.map(lambda (k, v): (k, (v, centerCount[k]))) \
+        .mapValues(lambda (x, y): list_divide(x, y))
     
 
-    # # recommend for different cluster
-    # # ClusterUserAvgVector.join()
-    # for i in ClusterUserAvgVector.collect():
-    #     print(i)
-    #     cos_sim(i[1], 
+    # recommend for different cluster
+    # ClusterUserAvgVector.join()
+    for i in ClusterUserAvgVector.collect():
+        print(i)
+#         cos_sim(i[1], 
     
-    # print("**********")
-    # print(ClusterUserAvgVector.take(2))
-    # # print(centerCount)
-    # print("**********")
-    # # print(userInfo.take(1))
+    print("**********")
+    print(ClusterUserAvgVector.take(2))
+    # print(centerCount)
+    print("**********")
+    # print(userInfo.take(1))
       
 
 

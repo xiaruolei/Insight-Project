@@ -4,7 +4,7 @@
 Scaling Collaborative Filtering with PySpark
 
 ## Tech Stack
-S3 -> Spark -> MYSQL -> frontend
+S3 -> Spark -> MYSQL -> Flask
 
 ## Data Source
 [Movie data](https://grouplens.org/datasets/movielens/)

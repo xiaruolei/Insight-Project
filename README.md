@@ -4,11 +4,7 @@
 Scaling Collaborative Filtering with PySpark
 
 ## Tech Stack
-S3 -> Spark -> HBase -> Phoenix -> frontend
-
-If time allows:
-
-Kafka -> Spark Streaming -> HBase -> Phoenix -> frontend
+S3 -> Spark -> MYSQL -> frontend
 
 ## Data Source
 [Movie data](https://grouplens.org/datasets/movielens/)
@@ -26,7 +22,7 @@ Achieving personalized experience can attract more users. With an increasing num
 
 ## MVP
 
-Data stored in S3 and use Spark to make computation to get rating matrix. Then store this matrix in HBase. Connecting HBase to frontend. So if input an user name, it will give your top 10 movies the user like most. If input a movie name, it will give your users list who maybe interest in this movie.
+Data stored in S3 and use Spark to make computation to get rating matrix. Then store this matrix in S3. Connecting MYSQL to frontend. So if input an user name, it will give your top 10 movies the user like most. If input a movie name, it will give your users list who maybe interest in this movie. Also, find similar users over millions movie watching history. It is implemented using LSH algorithm.
 
 ## Stretch Goals
 Use a scheduler to automatically run the system periodically and make frontend to visualize it.

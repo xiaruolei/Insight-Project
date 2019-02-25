@@ -3,6 +3,10 @@
 ## Project Idea
 Scaling Collaborative Filtering with PySpark
 
+## Demo
+Video: https://youtu.be/gtV-sBu4sqU
+Link: http://ec2-35-162-179-133.us-west-2.compute.amazonaws.com:5000/
+
 ## Tech Stack
 S3 -> Spark -> MYSQL -> Flask
 

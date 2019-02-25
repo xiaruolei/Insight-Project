@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+{% block head %}
+{{super()}}
+<style>
+    #table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+        margin: auto;
+        padding-bottom: 50px;
+    }
+    #table td, #table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        margin: auto;
+        text-align: center
+    }
+    #table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #666666;
+        color: white;
+        text-align: center
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table id="table">
+        <thead>
+            <th>Top 5 Recommend Results For User {{userId}}</th>
+        </thead>
+        
+        {% for row in results %}
+        <tr>
+            <td>{{ row[0] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <br>
+
+    <table id="table">
+        <thead>
+            <th>Partial Watch History</th>
+            <th>Rating</th>
+        </thead>
+        
+        {% for row in history %}
+        <tr>
+            {% for element in row %}
+            <td>{{ element }} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}
